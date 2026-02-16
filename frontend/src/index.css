@@ -1,0 +1,20 @@
+.actions-cell {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;      /* Prevent wrapping */
+  white-space: nowrap;    /* Extra safety */
+}
+
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 900px; /* adjust based on layout */
+}
+
+
+.actions-cell button {
+  min-width: 100px;
+}

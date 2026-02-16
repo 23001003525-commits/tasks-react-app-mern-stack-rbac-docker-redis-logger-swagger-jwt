@@ -1,0 +1,39 @@
+{
+  "name": "task-app-mern",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Task App (Mern Stack) Backend Focused",
+  "exports": {},
+  "private": true,
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "redis": "sudo docker compose up redis",
+    "serverredis" : "concurrently \"npm run redis\" \"npm run server\"",
+    "client": "npm run dev --prefix frontend",
+    "seed:admin": "node backend/seeder/seedAdmin.js",
+    "unseed:admin": "node backend/seeder/unseedAdmin.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "SKM",
+  "license": "Unlicensed",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.0",
+    "morgan": "^1.10.1",
+    "redis": "^5.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}
