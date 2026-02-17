@@ -27,7 +27,7 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: [{ type: 'Task', id: 'LIST' }],
+      invalidatesTags: [{ type: 'Task', id: 'LIST' }, 'Stats' ],
     }),
 
     updateTask: builder.mutation({
