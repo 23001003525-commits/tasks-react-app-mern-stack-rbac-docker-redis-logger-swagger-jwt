@@ -13,8 +13,8 @@ A **full-stack Task Management Web Application** built with **MERN stack** (Mong
 (To use LiveDemo: Make sure to allow third party cookies, as frontend is hosted on Vercel while backend is hosted on render,
 Backend sets cookie for frontend(different site, so 3rd party cookies needs to be enabled for jwt cookies to work).</br>
 Note#1: For accessing Admin Dashboard, Use following account:</br>
-admin@email.com
-adminpassword
+admin@email.com</br>
+adminpassword</br>
 Note#2: All user tasks are visible to this admin account, so this live version is to be used with that note in mind.
 
 ## ✨ Features
