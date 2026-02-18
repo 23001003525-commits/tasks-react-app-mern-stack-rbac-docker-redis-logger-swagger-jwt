@@ -4,7 +4,7 @@ import logger from './logger.js';
 //NOTE - redis has to be run using docker compose up redis while inside project root during development> This is to be done if you do not want to run whole backed(backend + redis) using docker. So this way you can run npm run server + docker compose up redis to still work during development without doing docker compose up --build
 
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production' && process.env.REDIS_LOCAL != true;
 
 /**
  * ---------------------------------------
