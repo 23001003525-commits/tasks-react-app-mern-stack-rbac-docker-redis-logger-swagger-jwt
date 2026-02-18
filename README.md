@@ -11,8 +11,11 @@ A **full-stack Task Management Web Application** built with **MERN stack** (Mong
 [https://tasks-react-app-mern-stack-rbac-doc.vercel.app/](https://devfront1023.pythonanywhere.com/task-app) 
 
 (To use LiveDemo: Make sure to allow third party cookies, as frontend is hosted on Vercel while backend is hosted on render,
-Backend sets cookie for frontend(different site, so 3rd party cookies needs to be enabled for jwt cookies to work).
-
+Backend sets cookie for frontend(different site, so 3rd party cookies needs to be enabled for jwt cookies to work).</br>
+Note#1: For accessing Admin Dashboard, Use following account:</br>
+admin@email.com
+adminpassword
+Note#2: All user tasks are visible to this admin account, so this live version is to be used with that note in mind.
 
 ## ✨ Features
 
