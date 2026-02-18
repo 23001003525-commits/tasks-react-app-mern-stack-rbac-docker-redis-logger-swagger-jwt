@@ -8,11 +8,11 @@
 A **full-stack Task Management Web Application** built with **MERN stack** (MongoDB, Express, React, Node.js) featuring **JWT authentication**, **protected dashboard**, and **complete CRUD functionality** for user-specific tasks.
 
 ## ✨ **Live Demo**
-https://tasks-react-app-mern-stack-auth.vercel.app/  
+[https://tasks-react-app-mern-stack-rbac-doc.vercel.app/](https://devfront1023.pythonanywhere.com/task-app) 
 
 (To use LiveDemo: Make sure to allow third party cookies, as frontend is hosted on Vercel while backend is hosted on render,
-Backend sets cookie for frontend(different site, so 3rd party cookies needs to be enabled for jwt cookies to work).</br>
-Note: Live Demo Needs Updation: Currently Runs Old Code; See Ending Of Project Video In Installation Steps To See The NEW UI/Features
+Backend sets cookie for frontend(different site, so 3rd party cookies needs to be enabled for jwt cookies to work).
+
 
 ## ✨ Features
 
@@ -260,7 +260,7 @@ npm run dev
 
 ## Status
 
-✅ **Complete & Old-Version-Live**  
+✅ **Complete & Live Version Available**  
 ⭐ **Star this repo** if you find it useful!
 
 
