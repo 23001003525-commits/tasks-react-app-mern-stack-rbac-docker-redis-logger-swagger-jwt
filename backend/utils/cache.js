@@ -1,4 +1,5 @@
 import redisClient from '../config/redis.js';
+import logger from '../config/logger.js';
 
 const DEFAULT_TTL = 60; // 1 minute (adjust per endpoint)
 
@@ -17,29 +18,75 @@ export const getCache = async (key) => {
 /**
  * Set cached value
  */
-export const setCache = async (key, value, ttl = DEFAULT_TTL) => {
-  try {
-    await redisClient.setEx(key, ttl, JSON.stringify(value));
-  } catch (error) {
-    // Fail silently
+export const setCache = async (key, value, ttl = DEFAULT_TTL, maxRetries = 10) => {
+  let lastError;
+  
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      await redisClient.setEx(key, ttl, JSON.stringify(value));
+      return; // Success
+    } catch (error) {
+      lastError = error;
+      
+      if (attempt === maxRetries - 1) break; // Last try
+      
+      // Exponential backoff: 100ms * 2^attempt
+      const delay = 100 * Math.pow(2, attempt);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
   }
+
+  //Log final failure (don't throw to keep fire-and-forget)
+logger.warn(`Cache set failed after ${maxRetries} attempts: ${lastError?.message}`);
 };
 
 /**
  * Delete cache by key
  */
-export const deleteCache = async (key) => {
-  try {
-    await redisClient.del(key);
-  } catch (error) {}
+export const deleteCache = async (key, maxRetries = 10) => {
+  let lastError;
+  
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      await redisClient.del(key);
+      return; // Success
+    } catch (error) {
+      lastError = error;
+      
+      if (attempt === maxRetries - 1) break; // Last try
+      
+      // Exponential backoff: 100ms * 2^attempt
+      const delay = 100 * Math.pow(2, attempt);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  
+  //Log final failure (don't throw to keep fire-and-forget)
+logger.warn(`Cache delete failed after ${maxRetries} attempts: ${lastError?.message}`);
 };
 
 /**
  * Delete by pattern (used for invalidation)
  */
-export const deleteByPattern = async (pattern) => {
-  try {
-    const keys = await redisClient.keys(pattern);
+export const deleteByPattern = async (pattern, maxRetries = 10) => {
+let lastError;
+  
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const keys = await redisClient.keys(pattern);
     if (keys.length) await redisClient.del(keys);
-  } catch (error) {}
+      return; // Success
+    } catch (error) {
+      lastError = error;
+      
+      if (attempt === maxRetries - 1) break; // Last try
+      
+      // Exponential backoff: 100ms * 2^attempt
+      const delay = 100 * Math.pow(2, attempt);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  
+  //Log final failure (don't throw to keep fire-and-forget)
+logger.warn(`Cache delete failed after ${maxRetries} attempts: ${lastError?.message}`);
 };
