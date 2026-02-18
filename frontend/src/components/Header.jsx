@@ -12,7 +12,7 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const apiDocsUrl = `${import.meta.env.VITE_API_URL}/api-docs`;
   const [logoutApiCall] = useLogoutMutation();
 
   const logoutHandler = async () => {
@@ -49,7 +49,7 @@ const Header = () => {
                       <LinkContainer to='/admin'>
                         <NavDropdown.Item>Admin Dashboard</NavDropdown.Item>
                       </LinkContainer>
-                      <NavDropdown.Item as="a" href="/api-docs" target="_blank" rel="noopener noreferrer">
+                      <NavDropdown.Item as="a" href={apiDocsUrl} target="_blank" rel="noopener noreferrer">
                         API Docs
                       </NavDropdown.Item>
                       </>
