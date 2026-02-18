@@ -48,7 +48,7 @@ const logger = winston.createLogger({
   ],
 });
 
-if (isProduction && proces.env.PROD_TYPE !== 'docker') {//cause errors saved in files will be saved to container's file system if using docker
+if (isProduction && process.env.PROD_TYPE !== 'docker') {//cause errors saved in files will be saved to container's file system if using docker
   logger.add(
     new winston.transports.File({
       filename: path.join(logDir, 'error.log'),
